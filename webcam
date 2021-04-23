@@ -64,3 +64,5 @@ if [ "$1" = "bumper" ]; then
   bumper
   exit
 fi
+
+echo Sorry, but I don\'t know what "$1" means...
