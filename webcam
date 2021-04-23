@@ -41,6 +41,10 @@ zoom_out() {
   exit
 }
 
+bumper() {
+  mpv -fs ~/Videos/bumper.mp4
+}
+
 if [ "$1" = "show" ]; then
   show_web_cam
   exit
@@ -53,5 +57,10 @@ fi
 
 if [ "$1" = "zoom_out" ]; then
   zoom_out
+  exit
+fi
+
+if [ "$1" = "bumper" ]; then
+  bumper
   exit
 fi
