@@ -10,11 +10,11 @@ MAX_ZOOM=270
 ZOOM_STEP=20
 
 show_web_cam() {
-  mpv --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg av://v4l2:/dev/video4 --profile=low-latency --untimed --vf=hflip --no-keepaspect-window
+  mpv --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg av://v4l2:"$DEVICE" --profile=low-latency --untimed --vf=hflip --no-keepaspect-window
 }
 
 zoom_in() {
-  current_zoom=$(v4l2-ctl --device /dev/video4 --get-ctrl zoom_absolute | grep -oP "zoom_absolute: \K...")
+  current_zoom=$(v4l2-ctl --device "$DEVICE" --get-ctrl zoom_absolute | grep -oP "zoom_absolute: \K...")
 
   new_zoom=$((current_zoom + ZOOM_STEP))
 
@@ -28,7 +28,7 @@ zoom_in() {
 }
 
 zoom_out() {
-  current_zoom=$(v4l2-ctl --device /dev/video4 --get-ctrl zoom_absolute | grep -oP "zoom_absolute: \K...")
+  current_zoom=$(v4l2-ctl --device "$DEVICE" --get-ctrl zoom_absolute | grep -oP "zoom_absolute: \K...")
 
   new_zoom=$((current_zoom - ZOOM_STEP))
 
