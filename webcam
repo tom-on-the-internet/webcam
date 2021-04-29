@@ -6,8 +6,8 @@ WEBCAM="C922 Pro Stream"
 DEVICE=$(v4l2-ctl --list-devices |grep -A1 "$WEBCAM" | grep -v "$WEBCAM" | xargs)
 
 MIN_ZOOM=100
-MAX_ZOOM=270
-ZOOM_STEP=20
+MAX_ZOOM=180
+ZOOM_STEP=5
 
 show_web_cam() {
   mpv --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg av://v4l2:"$DEVICE" --profile=low-latency --untimed --vf=hflip --no-keepaspect-window
